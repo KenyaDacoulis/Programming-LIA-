@@ -5,6 +5,14 @@ Spyder Editor
 This is a temporary script file.
 """
 
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data = pd.read_csv("animal-data-1.csv", nrows= 100)
+
+
+
 #----BAR GRAPH-----
 
 import pandas as pd
@@ -68,5 +76,33 @@ axs[1].bar(x,y, color = "purple")
 axs[1].set_title('Count by Intake Reason')
 axs[1].set_xlabel("Reason")
 axs[1].set_ylabel("Count")
+
+# 1 plot of any type containing data from more than 1 array using different colors and line styles.
+
+data['is_adopted'] = data['movementtype'] == 'Adoption'
+top5_species = data['speciesname'].value_counts().head(5).index
+data_top5 = data[data['speciesname'].isin(top5_species)]
+
+adoption_rate = data_top5.groupby('speciesname')['is_adopted'].mean() * 100
+colors = ['red', 'blue', 'green', 'orange', 'purple']
+adoption_rate.plot(kind='bar', color=colors)
+
+plt.title('Adoption Rate by Species (Top 5)')
+plt.ylabel('Adoption Rate')
+plt.show()
+
+
+#----SCATTER PLOT-----
+
+data['is_adopted'] = (data['movementtype'] == 'Adoption').astype(int)
+x1 = range(len(data))
+
+plt.scatter(x1, data['is_adopted'])
+plt.xlabel('Animal Number')
+plt.ylabel('Adoption Status (1 = Adopted, 0 = Not Adopted)')
+plt.title('Scatter Plot: Adoption Status of Animals')
+
+plt.show()
+
 
 
