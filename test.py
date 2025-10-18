@@ -23,4 +23,28 @@ plt.title("Number of Animals by Species")
 plt.show()
 
 
+# 1 plot of any type containing data from more than 1 array using different colors and line styles.
 
+data['is_adopted'] = data['movementtype'] == 'Adoption'
+top5_species = data['speciesname'].value_counts().head(5).index
+data_top5 = data[data['speciesname'].isin(top5_species)]
+
+adoption_rate = data_top5.groupby('speciesname')['is_adopted'].mean() * 100
+colors = ['red', 'blue', 'green', 'orange', 'purple']
+adoption_rate.plot(kind='bar', color=colors)
+
+plt.title('Adoption Rate by Species (Top 5)')
+plt.ylabel('Adoption Rate')
+plt.show()
+
+
+#pie chart showing the most common intake reasons for the first 100 rows of data
+#x: reasons( abandoned ,moving etc.) y: count(as a %)
+
+labels = data['intakereason'].value_counts().index   
+size = data['intakereason'].value_counts().values  
+
+plt.pie (size,autopct='%1.1f%%')
+plt.title("Animals Intake Reason")
+plt.legend(labels=labels) #legend so that the sections are clearly defined 
+plt.show()
