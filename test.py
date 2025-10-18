@@ -29,7 +29,6 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv("animal-data-1.csv", nrows= 100)
 
-
 #pie chart showing the most common intake reasons for the first 100 rows of data
 #x: reasons( abandoned ,moving etc.) y: count(as a %)
 
