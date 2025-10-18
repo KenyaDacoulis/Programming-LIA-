@@ -11,12 +11,25 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv("animal-data-1.csv", nrows= 100)
 
+#PART 3
+# This code eliminated the information of animals that have no microchip. It works by going over each value in the column and if it is empty (has no value) it removes it 
+
+for i in data.index:
+    value = data["identichipnumber"][i]
+    if value != value:
+        data = data.drop(i)
+        clean_data = data
+
+print(clean_data)
+
+#PART 4
+
+
 
 
 #----BAR GRAPH-----
 
-import pandas as pd
-import matplotlib.pyplot as plt
+
 
 data = pd.read_csv("animal-data-1.csv", nrows= 100)
 
@@ -32,8 +45,7 @@ plt.show()
 
 
 #----PIE CHART----
-import pandas as pd
-import matplotlib.pyplot as plt
+
 
 data = pd.read_csv("animal-data-1.csv", nrows= 100)
 
@@ -51,8 +63,7 @@ plt.show()
 
 #----SUBPLOTS----
 
-import pandas as pd
-import matplotlib.pyplot as plt
+
 
 data = pd.read_csv("animal-data-1.csv", nrows= 100)
 
@@ -105,4 +116,47 @@ plt.title('Scatter Plot: Adoption Status of Animals')
 plt.show()
 
 
+#----SCATTER PLOT #2-----
 
+#Scatterplot graph showing the intake and movement date of animals. It shows hol long they were at the shelter.
+#The dots closset to the diagonal are those who spent the least amount of time at the shelter.
+
+# Converting dates to datetime format
+data["intakedate"] = pd.to_datetime(data["intakedate"])
+data["movementdate"] = pd.to_datetime(data["movementdate"])
+
+# Droping rows missing either date
+data = data.dropna(subset=["intakedate", "movementdate"])
+
+# Scatter plot
+x = data["intakedate"]
+y=  data["movementdate"]
+plt.scatter(x,y, color = 'blue')
+plt.title("Intake Date vs. Movement Date")
+plt.xlabel("Intake Date")
+plt.ylabel("Movement Date")
+plt.grid(axis = 'y')
+
+
+# Diagonal reference line
+a = [x.min(), x.max()]
+b = [y.min(), y.max()]
+plt.plot(a,b, color = 'red', linestyle = '--')
+plt.show()
+
+
+#----HISTOGRAM #2-----
+
+#Histogram showing the amount of animals taken in throughout the years
+
+#converting dates to proper format
+data['intakedate'] = pd.to_datetime(data["intakedate"])
+data['intake_year'] = data['intakedate'].dt.year
+
+#Histogram 
+x = data['intake_year']
+plt.hist(x, color = 'purple')
+plt.xlabel("Year")
+plt.ylabel("Number of Animals")
+plt.title("Number of Animals Taken In per year")
+plt.show()
