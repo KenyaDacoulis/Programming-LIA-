@@ -5,12 +5,12 @@ Spyder Editor
 This is a temporary script file.
 """
 
-import numpy as np
+#----BAR GRAPH-----
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
 data = pd.read_csv("animal-data-1.csv", nrows= 100)
-
 
 # bar graph showing number of animals per species for first 100 rows of data               
 x = data['speciesname'].value_counts().index
@@ -22,8 +22,8 @@ plt.ylabel("Count")
 plt.title("Number of Animals by Species")
 plt.show()
 
-#-----PIE CHART-----
 
+#----PIE CHART----
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -40,7 +40,8 @@ plt.title("Animals Intake Reason")
 plt.legend(labels=labels) #legend so that the sections are clearly defined 
 plt.show()
 
-#-----SUBPLOTS------
+
+#----SUBPLOTS----
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -48,7 +49,6 @@ import matplotlib.pyplot as plt
 data = pd.read_csv("animal-data-1.csv", nrows= 100)
 
 # subplot 1 is a bar graph showing amount per species type, subplot 2 is a bar graph showing the reason they were taken in. this will show  which species are more commonly left for specific reasons.
-
 plt.subplots
      
 fig, axs = plt.subplots(1, 2,)
@@ -59,7 +59,6 @@ axs[0].bar(x,y, color = "yellow")
 axs[0].set_xlabel("Species")
 axs[0].set_ylabel("Count")
 axs[0].set_title("Number of Animals by Species")
-
 
 # Subplot 2: Intake Reason
 x = data['intakereason'].value_counts().index  
