@@ -1,9 +1,10 @@
+
 # -*- coding: utf-8 -*-
 """
 Spyder Editor
 
 This is a temporary script file.
-"""
+Kenya, Ava, Lindsey"""
 
 import numpy as np
 import pandas as pd
@@ -23,9 +24,6 @@ for i in data.index:
 print(clean_data)
 
 #PART 4
-
-
-
 
 #----BAR GRAPH-----
 
@@ -49,21 +47,19 @@ plt.show()
 
 data = pd.read_csv("animal-data-1.csv", nrows= 100)
 
-# bar graph showing number of animals per species for first 100 rows of data               
-x = data['speciesname'].value_counts().index
-y = data['speciesname'].value_counts().values
+#pie chart showing the most common intake reasons for the first 100 rows of data
+#x: reasons( abandoned ,moving etc.) y: count(as a %)
 
-plt.bar(x,y, color = "cornflowerblue")
-plt.xlabel("Species")
-plt.ylabel("Count")
-plt.title("Number of Animals by Species")
+labels = data['intakereason'].value_counts().index   
+size = data['intakereason'].value_counts().values  
+
+plt.pie (size,autopct='%1.1f%%')
+plt.title("Animals Intake Reason")
+plt.legend(labels=labels) #legend so that the sections are clearly defined 
 plt.show()
 
 
-
 #----SUBPLOTS----
-
-
 
 data = pd.read_csv("animal-data-1.csv", nrows= 100)
 
@@ -160,3 +156,5 @@ plt.xlabel("Year")
 plt.ylabel("Number of Animals")
 plt.title("Number of Animals Taken In per year")
 plt.show()
+
+
