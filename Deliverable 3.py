@@ -6,6 +6,7 @@ Created on Thu Nov  6 17:28:21 2025
 """
 
 import pandas as pd
+import seaborn as sns
 
 data = pd.read_csv('product_sales_dataset_final.csv')
 
@@ -43,9 +44,9 @@ data['Date'] = pd.to_datetime(data['Order_Date'])
 
 #----PART 3: Univariate non-graphical EDA----
 
-#--numberICAL DATA--
+#--NUMERICAL DATA--
 
-# 1: Qunatity
+# 1: Quantity
 
 info_quantity = data['Quantity'].describe()
 print(info_quantity)
@@ -182,12 +183,24 @@ print('mode product name:', mode_product_name)
 unique_product_name = data['Product_Name'].nunique()
 print('number unique product names:' , unique_product_name)
 
+
 #----PART 4: Univariate graphical EDA----
 
+# 1: Quantity
 
+sns.displot(data = data, x = 'Quantity', discrete = True)
 
+# 2: Unit Price
 
+sns.displot(data = data, x = ' Unit_Price ', hue = 'Category', element = 'step')
 
+# 3: Revenue
+
+sns.displot(data = data, x = ' Revenue ', kind = 'kde',  bw_adjust = .5)
+
+# 4: Profit
+
+sns.displot(data = data, x = ' Profit ', hue = 'Region')
 
 
 
