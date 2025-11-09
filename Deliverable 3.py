@@ -205,6 +205,22 @@ sns.displot(data = data, x = ' Profit ', hue = 'Region')
 
 
 
+#-----Part 5:  Multivariate non-graphical EDA----------
+
+pd.crosstab(data['State'], data['Category'], normalize='index') * 100
+
+
+pd.crosstab(data['Sub_Category'], data['Product_Name'], normalize='index') * 100
+
+
+pd.crosstab(data['Region'], data['Quantity'], normalize='index') * 100
+
+
+pd.crosstab([data['Category'], data['Region']], data['Sub_Category'], normalize='index') * 100
+
+
+
+
 
 
 
