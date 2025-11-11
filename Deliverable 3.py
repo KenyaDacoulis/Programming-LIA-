@@ -226,11 +226,9 @@ pd.crosstab([data['Category'], data['Region']], data['Sub_Category'], normalize=
 # 6.1.Visualizing statistical relationships (5 plots): 
 
 # a) Which category makes the most profit?
-
 sns.displot(data = data, x = ' Profit ', col = 'Category' )
 
 # b) How does Revenue and Profit vary every season for each region? 
-
 data['Order_Date'] = pd.to_datetime(data['Order_Date'])
 
 def get_season(month):
@@ -242,15 +240,16 @@ def get_season(month):
         return 'Summer'
     else:
         return 'Fall'
-#the def function was used to categorize the dates into blocks of seasons. 
+#the def function was used to categorize the dates into blocks of seasons. The link that shows where the function was found and understood is seen in the lab report.  
+
 data['Season'] = data['Order_Date'].dt.month.apply(get_season)
 
-sns.displot(data=data, x=' Revenue ',  y= ' Profit ', col= 'Region', hue='Season', kind='kde')
+sns.displot(data=data.sample(1000), x=' Revenue ', y= ' Profit ', col= 'Region', hue='Season', kind= 'kde', palette = 'pastel', level = 1)
 
+
+ 
 # 6.2.Visualizing categorical data (10 plots):
-
-
-# c) Does the revenue vary by region and does it vary by quarter of the year
+# c) Does the revenue vary by region and does it vary by quarter of the year?
 
 data['Quarter'] = data['Date'].dt.quarter
 
