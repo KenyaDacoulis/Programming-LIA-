@@ -2,7 +2,7 @@
 """
 Created on Thu Nov  6 17:28:21 2025
 
-@author: Kenya Dacoulis
+@author: Kenya Dacoulis, Ava Binetti, Lindsay Joseph
 """
 
 import pandas as pd
@@ -217,6 +217,7 @@ pd.crosstab(data['Region'], data['Quantity'], normalize='index') * 100
 
 
 pd.crosstab([data['Category'], data['Region']], data['Sub_Category'], normalize='index') * 100
+
 
 
 
