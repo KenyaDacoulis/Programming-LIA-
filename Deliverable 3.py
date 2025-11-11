@@ -246,9 +246,24 @@ data['Season'] = data['Order_Date'].dt.month.apply(get_season)
 
 sns.displot(data=data.sample(1000), x=' Revenue ', y= ' Profit ', col= 'Region', hue='Season', kind= 'kde', palette = 'pastel', level = 1)
 
+#c)
 
- 
+#d) 
+
+#e)
+
+
 # 6.2.Visualizing categorical data (10 plots):
+    
+#a) Quantity per category
+sns.stripplot(data=data.sample(800), x='Category', y='Quantity', jitter=True,)
+
+
+
+#b)  Quantity per region
+sns.stripplot(data=data.sample(800), x='Region', y='Quantity', jitter=False,)
+
+
 # c) Does the revenue vary by region and does it vary by quarter of the year?
 
 data['Quarter'] = data['Date'].dt.quarter
@@ -256,15 +271,33 @@ data['Quarter'] = data['Date'].dt.quarter
 sns.catplot(data = data.sample(1000), x = 'Region', y = ' Revenue ', col = 'Quarter', kind = 'swarm')
 # sample of 1000 orders because too much data to make plot thats legible
 
+#d)  does profit vary by category and region across quarters of the year?
+
+data['Quarter'] = data['Date'].dt.quarter
+
+sns.catplot(data = data.sample(800), x = 'Category', y = ' Profit ', hue = 'Region', col = 'Quarter', kind = 'box')
+
+#e)
 
 
 # f) what is the profit distribution across categories for 2023 and 2024
 data['Year'] = data['Date'].dt.year
 sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Year', kind = 'violin', bw = 1.5, palette = 'pastel')
 
+#g)
+
+#h)
+
+#i)
+
+#j)
+
 
 # 6.3. Visualizing bivariate distributions (3 plots): 
 
+#a)
+
+#b)
 
 #c) Do people tend to by more of products that cost less and is it consistant throughout both years?
 
