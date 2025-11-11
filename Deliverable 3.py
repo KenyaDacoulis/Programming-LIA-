@@ -200,11 +200,57 @@ sns.displot(data = data, x = ' Revenue ', kind = 'kde',  bw_adjust = .5)
 
 # 4: Profit
 
-sns.displot(data = data, x = ' Profit ', hue = 'Region')
+sns.displot(data = data, x = ' Profit ', hue = 'Region', kind = 'kde', fill = True)
 
 
 
 
+#-----Part 5:  Multivariate non-graphical EDA----------
+
+pd.crosstab(data['State'], data['Category'], normalize='index') * 100
+
+
+pd.crosstab(data['Sub_Category'], data['Product_Name'], normalize='index') * 100
+
+
+pd.crosstab(data['Region'], data['Quantity'], normalize='index') * 100
+
+
+pd.crosstab([data['Category'], data['Region']], data['Sub_Category'], normalize='index') * 100
 
 
 
+#----PART 6: Multivariate graphical EDA----
+
+    
+# 6.1.Visualizing statistical relationships (5 plots): 
+
+# a) Which category makes the most profit?
+
+sns.displot(data = data, x = ' Profit ', col = 'Category' )
+
+
+# 6.2.Visualizing categorical data (10 plots):
+
+
+# c) Does the revenue vary by region and does it vary by quarter of the year
+
+data['Quarter'] = data['Date'].dt.quarter
+
+sns.catplot(data = data.sample(1000), x = 'Region', y = ' Revenue ', col = 'Quarter', kind = 'swarm')
+# sample of 1000 orders because too much data to make plot thats legible
+
+
+
+# f) what is the profit distribution across categories for 2023 and 2024
+data['Year'] = data['Date'].dt.year
+sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Year', kind = 'violin', bw = 1.5, palette = 'pastel')
+
+
+# 6.3. Visualizing bivariate distributions (3 plots): 
+
+
+#c) Do people tend to by more of products that cost less and is it consistant throughout both years?
+
+sns.displot(data = data.sample(1000), x = ' Unit_Price ', y = 'Quantity', col = 'Year', kind = 'kde') 
+# yes 
