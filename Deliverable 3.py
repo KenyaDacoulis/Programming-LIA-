@@ -2,7 +2,7 @@
 """
 Created on Thu Nov  6 17:28:21 2025
 
-@author: Kenya Dacoulis, Ava Binetti, Lindsay Joseph
+@author: Kenya Dacoulis
 """
 
 import pandas as pd
@@ -200,7 +200,7 @@ sns.displot(data = data, x = ' Revenue ', kind = 'kde',  bw_adjust = .5)
 
 # 4: Profit
 
-sns.displot(data = data, x = ' Profit ', hue = 'Region', kind = 'kde', fill = True)
+sns.displot(data = data, x = ' Profit ', hue = 'Region')
 
 
 
@@ -220,7 +220,6 @@ pd.crosstab([data['Category'], data['Region']], data['Sub_Category'], normalize=
 
 
 
-
 #----PART 6: Multivariate graphical EDA----
 
     
@@ -230,6 +229,23 @@ pd.crosstab([data['Category'], data['Region']], data['Sub_Category'], normalize=
 
 sns.displot(data = data, x = ' Profit ', col = 'Category' )
 
+# b) How does Revenue and Profit vary every season for each region? 
+
+data['Order_Date'] = pd.to_datetime(data['Order_Date'])
+
+def get_season(month):
+    if month in [12, 1, 2]:
+        return 'Winter'
+    elif month in [3, 4, 5]:
+        return 'Spring'
+    elif month in [6, 7, 8]:
+        return 'Summer'
+    else:
+        return 'Fall'
+#the def function was used to categorize the dates into blocks of seasons. 
+data['Season'] = data['Order_Date'].dt.month.apply(get_season)
+
+sns.displot(data=data, x=' Revenue ',  y= ' Profit ', col= 'Region', hue='Season', kind='kde')
 
 # 6.2.Visualizing categorical data (10 plots):
 
@@ -255,3 +271,8 @@ sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Year
 
 sns.displot(data = data.sample(1000), x = ' Unit_Price ', y = 'Quantity', col = 'Year', kind = 'kde') 
 # yes 
+
+
+
+
+
