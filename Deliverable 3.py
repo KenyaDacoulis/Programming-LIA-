@@ -238,18 +238,25 @@ sns.displot(data = data, x = ' Profit ', hue = 'Region')
 numerical_data = data[['Quantity', ' Unit_Price ', ' Revenue ', ' Profit ']]
 for i in numerical_data:
 # a) Custom and appropriate number of bins
-    sns.displot(data, x = i, bins = 5)
+    if i != 'Quantity':
+        sns.displot(data, x = i, bins = 10)
 # b) Conditioning on other variables and c) Stacked histogram
-    sns.displot(data, x = i, hue = 'Year', bins = 5, multiple = 'stack', palette= 'pastel') 
+        sns.displot(data, x = i, hue = 'Region',  palette= 'bright') 
 # d) Dodge bars
-    sns.displot(data, x = i, hue = 'Year', bins = 5, multiple = 'dodge', palette= 'pastel') 
+        sns.displot(data, x = i, hue = 'Year', multiple = 'dodge', bins = 50, palette= 'bright') 
 # e) Normalized histogram statistics
-    sns.displot(data, x = i, hue = 'Year', stat = 'density', common_norm = False, palette= 'pastel') 
+        sns.displot(data, x = i, hue = 'Year', stat = 'density', common_norm = False, palette= 'bright') 
 # f) KDE
-    sns.displot(data, x = i, kind = 'kde', bw_adjust = 1.5) 
+        sns.displot(data, x = i, kind = 'kde', bw_adjust = 1.5) 
 # g) Empirical cumulative distributions
-    sns.displot(data, x = i, hue = 'Category', kind = 'ecdf', palette= 'pastel')
-
+        sns.displot(data, x = i, hue = 'Category', kind = 'ecdf', palette= 'bright')
+    else:
+        sns.displot(data, x = i, discrete = True)
+        sns.displot(data, x = i, hue = 'Region', discrete = True, multiple = 'stack', palette= 'bright')
+        sns.displot(data, x = i, hue = 'Year', multiple = 'dodge',discrete = True, palette= 'bright') 
+        sns.displot(data, x = i, hue = 'Year', stat = 'density', common_norm = False, discrete = True, palette= 'bright') 
+        sns.displot(data, x = i, kind = 'kde', bw_adjust = 1.5) 
+        sns.displot(data, x = i, hue = 'Category', kind = 'ecdf', palette= 'bright')
 
 
 #-----Part 5:  Multivariate non-graphical EDA----------
