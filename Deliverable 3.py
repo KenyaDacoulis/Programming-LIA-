@@ -251,12 +251,12 @@ for i in numerical_data:
 # g) Empirical cumulative distributions
         sns.displot(data, x = i, hue = 'Category', kind = 'ecdf', palette= 'bright')
     else:
-        sns.displot(data, x = i, discrete = True)
-        sns.displot(data, x = i, hue = 'Region', discrete = True, multiple = 'stack', palette= 'bright')
-        sns.displot(data, x = i, hue = 'Year', multiple = 'dodge',discrete = True, palette= 'bright') 
-        sns.displot(data, x = i, hue = 'Year', stat = 'density', common_norm = False, discrete = True, palette= 'bright') 
-        sns.displot(data, x = i, kind = 'kde', bw_adjust = 1.5) 
-        sns.displot(data, x = i, hue = 'Category', kind = 'ecdf', palette= 'bright')
+        sns.displot(data, x = i, discrete = True) # a)
+        sns.displot(data, x = i, hue = 'Region', discrete = True, multiple = 'stack', palette= 'bright') # b) and c)
+        sns.displot(data, x = i, hue = 'Year', multiple = 'dodge',discrete = True, palette= 'bright') #d)
+        sns.displot(data, x = i, hue = 'Year', stat = 'density', common_norm = False, discrete = True, palette= 'bright') #e)
+        sns.displot(data, x = i, kind = 'kde', bw_adjust = 1.5) # f)
+        sns.displot(data, x = i, hue = 'Category', kind = 'ecdf', palette= 'bright') # g)
 
 
 #-----Part 5:  Multivariate non-graphical EDA----------
