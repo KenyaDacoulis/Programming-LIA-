@@ -232,6 +232,7 @@ sns.displot(data = data, x = ' Profit ', hue = 'Region')
 
 
 
+
 #Not sure if I have to do all a - g for each column or chose which to use. will ask 
 
 numerical_data = data[['Quantity', ' Unit_Price ', ' Revenue ', ' Profit ']]
@@ -247,11 +248,7 @@ for i in numerical_data:
 # f) KDE
     sns.displot(data, x = i, kind = 'kde', bw_adjust = 1.5) 
 # g) Empirical cumulative distributions
-    sns.displot(data, x = i, hue = 'Year', kind = 'ecdf')
-
-
-
-
+    sns.displot(data, x = i, hue = 'Category', kind = 'ecdf', palette= 'pastel')
 
 
 
@@ -280,9 +277,9 @@ sns.displot(data = data, x = ' Profit ', col = 'Category' )
 
 # b) 
 
-
 sns.relplot(data=data.sample(1000), x=' Revenue ', y=' Profit ', hue='Season', size='Quantity', col= 'Category', kind='scatter')
 plt.show()
+
 
 # c)  --------
 
@@ -305,7 +302,6 @@ plt.show()
 sns.stripplot(data=data.sample(800), x='Category', y='Quantity', jitter=True,)
 plt.show()
 
-
 #b)  Quantity per region
 sns.stripplot(data=data.sample(800), x='Region', y='Quantity', jitter=False,)
 plt.show()
@@ -321,6 +317,7 @@ plt.show()
 
 sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Region', col = 'Quarter', kind = 'box')
 plt.show()
+
 
 #e) --------
 
@@ -342,12 +339,25 @@ plt.show()
 # j) --------
 
 
+# g) --------
+
+
+# h) --------
+
+
+# i) --------
+
+
+# j) --------
+
+
 
 # 6.3. Visualizing bivariate distributions (3 plots): 
 
 #a)What can the relationship between revenue and profit tell us about sales dynamics?
 sns.histplot(data=data.sample(1000), x=' Revenue ', y=' Profit ', bins=25, cmap='coolwarm')
 plt.show()
+
 
 
 #b)  --------
