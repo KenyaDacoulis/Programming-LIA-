@@ -2,7 +2,7 @@
 """
 Created on Thu Nov  6 17:28:21 2025
 
-@author: Kenya Dacoulis
+@author: Kenya Dacoulis, Lindsay Joseph 
 """
 
 import pandas as pd
@@ -228,7 +228,7 @@ pd.crosstab([data['Category'], data['Region']], data['Sub_Category'], normalize=
 # a) Which category makes the most profit?
 sns.displot(data = data, x = ' Profit ', col = 'Category' )
 
-# b) How does Revenue and Profit vary every season for each region? 
+# b) 
 data['Order_Date'] = pd.to_datetime(data['Order_Date'])
 
 def get_season(month):
@@ -240,24 +240,28 @@ def get_season(month):
         return 'Summer'
     else:
         return 'Fall'
+
+    
+data['Season'] = data['Order_Date'].dt.month.apply(get_season)
 #the def function was used to categorize the dates into blocks of seasons. The link that shows where the function was found and understood is seen in the lab report.  
 
-data['Season'] = data['Order_Date'].dt.month.apply(get_season)
+sns.relplot(data=data, x=' Revenue ', y=' Profit ', hue='Season', size='Quantity', col= 'Category', kind='scatter')
+# c) 
 
-sns.displot(data=data.sample(1000), x=' Revenue ', y= ' Profit ', col= 'Region', hue='Season', kind= 'kde', palette = 'pastel', level = 1)
 
-#c)
+# d) Which category has the most profit variation?
 
-#d) 
+sns.barplot(data=data, x='Category', y='Profit', errorbar='sd')
 
-#e)
+# e) Is there a linear relationship between unit price and profit?
 
+sns.lmplot(data=data.sample(800), x= ' Unit_Price ', y=' Profit ', hue='Season')
+g=sns.FacetGrid(data=data.sample(800), col='Season', hue= 'Season')
 
 # 6.2.Visualizing categorical data (10 plots):
     
 #a) Quantity per category
 sns.stripplot(data=data.sample(800), x='Category', y='Quantity', jitter=True,)
-
 
 
 #b)  Quantity per region
@@ -303,8 +307,6 @@ sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Year
 
 sns.displot(data = data.sample(1000), x = ' Unit_Price ', y = 'Quantity', col = 'Year', kind = 'kde') 
 # yes 
-
-
 
 
 
