@@ -246,12 +246,14 @@ data['Season'] = data['Order_Date'].dt.month.apply(get_season)
 #the def function was used to categorize the dates into blocks of seasons. The link that shows where the function was found and understood is seen in the lab report.  
 
 sns.relplot(data=data, x=' Revenue ', y=' Profit ', hue='Season', size='Quantity', col= 'Category', kind='scatter')
-# c) 
+
+# c)  --------
+
 
 
 # d) Which category has the most profit variation?
 
-sns.barplot(data=data, x='Category', y='Profit', errorbar='sd')
+sns.barplot(data=data, x='Category', y=' Profit ', errorbar='sd')
 
 # e) Is there a linear relationship between unit price and profit?
 
@@ -275,33 +277,40 @@ data['Quarter'] = data['Date'].dt.quarter
 sns.catplot(data = data.sample(1000), x = 'Region', y = ' Revenue ', col = 'Quarter', kind = 'swarm')
 # sample of 1000 orders because too much data to make plot thats legible
 
-#d)  does profit vary by category and region across quarters of the year?
+#d )  does profit vary by category and region across quarters of the year?
 
 data['Quarter'] = data['Date'].dt.quarter
 
 sns.catplot(data = data.sample(800), x = 'Category', y = ' Profit ', hue = 'Region', col = 'Quarter', kind = 'box')
 
-#e)
+#e) --------
 
 
 # f) what is the profit distribution across categories for 2023 and 2024
 data['Year'] = data['Date'].dt.year
 sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Year', kind = 'violin', bw = 1.5, palette = 'pastel')
 
-#g)
+# g) --------
 
-#h)
 
-#i)
+# h) --------
 
-#j)
+
+# i) --------
+
+
+# j) --------
+
 
 
 # 6.3. Visualizing bivariate distributions (3 plots): 
 
-#a)
+#a)What can the relationship between revenue and profit tell us about sales dynamics?
+sns.histplot(data=data.sample(1000), x=' Revenue ', y=' Profit ', bins=25, cmap='coolwarm')
 
-#b)
+
+#b)  --------
+
 
 #c) Do people tend to by more of products that cost less and is it consistant throughout both years?
 
