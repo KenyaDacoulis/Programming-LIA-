@@ -2,11 +2,12 @@
 """
 Created on Thu Nov  6 17:28:21 2025
 
-@author: Kenya Dacoulis, Ava Binetti, Lindsay Joseph
+@author: Kenya Dacoulis, Lindsay Joseph, Ava Binetti 
 """
 
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 data = pd.read_csv('product_sales_dataset_final.csv')
 
@@ -40,6 +41,33 @@ print(empty_values)
 # d)  
 
 data['Date'] = pd.to_datetime(data['Order_Date'])
+
+# Addition of columns representing time periods
+
+# seasons
+data['Order_Date'] = pd.to_datetime(data['Order_Date'])
+
+def get_season(month):
+    if month in [12, 1, 2]:
+        return 'Winter'
+    elif month in [3, 4, 5]:
+        return 'Spring'
+    elif month in [6, 7, 8]:
+        return 'Summer'
+    else:
+        return 'Fall'
+
+    
+data['Season'] = data['Order_Date'].dt.month.apply(get_season)
+#the def function was used to categorize the dates into blocks of seasons. The link that shows where the function was found and understood is seen in the lab report.  
+
+# Quarter
+
+data['Quarter'] = data['Date'].dt.quarter
+
+# Year
+
+data['Year'] = data['Date'].dt.year
 
 
 #----PART 3: Univariate non-graphical EDA----
@@ -200,7 +228,29 @@ sns.displot(data = data, x = ' Revenue ', kind = 'kde',  bw_adjust = .5)
 
 # 4: Profit
 
-sns.displot(data = data, x = ' Profit ', hue = 'Region', kind = 'kde', fill = True)
+sns.displot(data = data, x = ' Profit ', hue = 'Region')
+
+
+
+#Not sure if I have to do all a - g for each column or chose which to use. will ask 
+
+numerical_data = data[['Quantity', ' Unit_Price ', ' Revenue ', ' Profit ']]
+for i in numerical_data:
+# a) Custom and appropriate number of bins
+    sns.displot(data, x = i, bins = 5)
+# b) Conditioning on other variables and c) Stacked histogram
+    sns.displot(data, x = i, hue = 'Year', bins = 5, multiple = 'stack', palette= 'pastel') 
+# d) Dodge bars
+    sns.displot(data, x = i, hue = 'Year', bins = 5, multiple = 'dodge', palette= 'pastel') 
+# e) Normalized histogram statistics
+    sns.displot(data, x = i, hue = 'Year', stat = 'density', common_norm = False, palette= 'pastel') 
+# f) KDE
+    sns.displot(data, x = i, kind = 'kde', bw_adjust = 1.5) 
+# g) Empirical cumulative distributions
+    sns.displot(data, x = i, hue = 'Year', kind = 'ecdf')
+
+
+
 
 
 
@@ -220,38 +270,94 @@ pd.crosstab([data['Category'], data['Region']], data['Sub_Category'], normalize=
 
 
 
-
 #----PART 6: Multivariate graphical EDA----
 
     
 # 6.1.Visualizing statistical relationships (5 plots): 
 
 # a) Which category makes the most profit?
-
 sns.displot(data = data, x = ' Profit ', col = 'Category' )
 
+# b) 
+
+
+sns.relplot(data=data.sample(1000), x=' Revenue ', y=' Profit ', hue='Season', size='Quantity', col= 'Category', kind='scatter')
+plt.show()
+
+# c)  --------
+
+
+
+# d) Which category has the most profit variation?
+
+sns.barplot(data=data, x='Category', y=' Profit ', errorbar='sd')
+plt.show()
+
+# e) Is there a linear relationship between unit price and profit?
+
+sns.lmplot(data=data.sample(800), x= ' Unit_Price ', y=' Profit ', hue='Season')
+g=sns.FacetGrid(data=data.sample(800), col='Season', hue= 'Season') # whats going on here
+plt.show()
 
 # 6.2.Visualizing categorical data (10 plots):
+    
+#a) Quantity per category
+sns.stripplot(data=data.sample(800), x='Category', y='Quantity', jitter=True,)
+plt.show()
 
 
-# c) Does the revenue vary by region and does it vary by quarter of the year
+#b)  Quantity per region
+sns.stripplot(data=data.sample(800), x='Region', y='Quantity', jitter=False,)
+plt.show()
 
-data['Quarter'] = data['Date'].dt.quarter
+
+# c) Does the revenue vary by region and does it vary by quarter of the year?
 
 sns.catplot(data = data.sample(1000), x = 'Region', y = ' Revenue ', col = 'Quarter', kind = 'swarm')
+plt.show()
 # sample of 1000 orders because too much data to make plot thats legible
 
+#d )  does profit vary by category and region across quarters of the year?
+
+sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Region', col = 'Quarter', kind = 'box')
+plt.show()
+
+#e) --------
 
 
 # f) what is the profit distribution across categories for 2023 and 2024
-data['Year'] = data['Date'].dt.year
-sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Year', kind = 'violin', bw = 1.5, palette = 'pastel')
+
+sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Year', kind = 'violin', bw_adjust = 1.5, palette = 'pastel')
+plt.show()
+
+# g) --------
+
+
+# h) --------
+
+
+# i) --------
+
+
+# j) --------
+
 
 
 # 6.3. Visualizing bivariate distributions (3 plots): 
+
+#a)What can the relationship between revenue and profit tell us about sales dynamics?
+sns.histplot(data=data.sample(1000), x=' Revenue ', y=' Profit ', bins=25, cmap='coolwarm')
+plt.show()
+
+
+#b)  --------
 
 
 #c) Do people tend to by more of products that cost less and is it consistant throughout both years?
 
 sns.displot(data = data.sample(1000), x = ' Unit_Price ', y = 'Quantity', col = 'Year', kind = 'kde') 
+plt.show()
 # yes 
+
+
+
