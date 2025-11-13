@@ -374,7 +374,10 @@ plt.show()
 
 
 
-#b)  --------
+#b) Does higher revenue lead to hgher profit?
+sns.displot(data = data.sample(1000), x = ' Revenue ', y = ' Profit ', kind = 'kde', levels = 7) 
+plt.show()
+
 
 
 #c) Do people tend to by more of products that cost less and is it consistant throughout both years?
