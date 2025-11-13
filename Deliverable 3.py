@@ -312,7 +312,7 @@ plt.show()
 # 6.2.Visualizing categorical data (10 plots):
     
 #a) Quantity per category
-sns.stripplot(data=data.sample(800), x='Category', y='Quantity', jitter=True,)
+sns.stripplot(data=data.sample(800), x='Category', y=' Unit_Price ', jitter=True,)
 plt.show()
 
 #b)  Quantity per region
@@ -363,16 +363,6 @@ plt.show()
 # j) --------
 
 
-# g) --------
-
-
-# h) --------
-
-
-# i) --------
-
-
-# j) --------
 
 
 
