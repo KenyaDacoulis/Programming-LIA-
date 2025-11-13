@@ -245,7 +245,7 @@ for i in numerical_data:
 # d) Dodge bars
         sns.displot(data, x = i, hue = 'Year', multiple = 'dodge', bins = 50, palette= 'bright') 
 # e) Normalized histogram statistics
-        sns.displot(data, x = i, hue = 'Year', stat = 'density', common_norm = False, palette= 'bright') 
+        sns.displot(data, x = i, stat = 'density', common_norm = False, palette= 'bright') 
 # f) KDE
         sns.displot(data, x = i, kind = 'kde', bw_adjust = 1.5) 
 # g) Empirical cumulative distributions
@@ -254,7 +254,7 @@ for i in numerical_data:
         sns.displot(data, x = i, discrete = True) # a)
         sns.displot(data, x = i, hue = 'Region', discrete = True, multiple = 'stack', palette= 'bright') # b) and c)
         sns.displot(data, x = i, hue = 'Year', multiple = 'dodge',discrete = True, palette= 'bright') #d)
-        sns.displot(data, x = i, hue = 'Year', stat = 'density', common_norm = False, discrete = True, palette= 'bright') #e)
+        sns.displot(data, x = i, stat = 'density', common_norm = False, discrete = True, palette= 'bright') #e)
         sns.displot(data, x = i, kind = 'kde', bw_adjust = 1.5) # f)
         sns.displot(data, x = i, hue = 'Category', kind = 'ecdf', palette= 'bright') # g)
 
