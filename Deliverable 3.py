@@ -265,17 +265,17 @@ for i in numerical_data:
 
 #-----Part 5:  Multivariate non-graphical EDA----------
 
-pd.crosstab(data['State'], data['Category'], normalize='index') * 100
+Cat_state_table= pd.crosstab(data['State'], data['Category'], normalize='index') * 100
+print(Cat_state_table)
 
+Sub_Cat_Product_table= pd.crosstab(data['Sub_Category'], data['Product_Name'], normalize='index') * 100
+print(Sub_Cat_Product_table)
 
-pd.crosstab(data['Sub_Category'], data['Product_Name'], normalize='index') * 100
+Reg_season_table= pd.crosstab(data['Region'], data['Season'], normalize='index') * 100 
+print(Reg_season_table)
 
-
-pd.crosstab(data['Region'], data['Season'], normalize='index') * 100 
-
-
-table= pd.crosstab([data['Category'], data['Region']], data['Sub_Category'], normalize='index') * 100
-print(table)
+multvariable_table= pd.crosstab([data['Category'], data['Region']], data['Sub_Category'], normalize='index') * 100
+print(multvariable_table)
 
 
 #----PART 6: Multivariate graphical EDA----
