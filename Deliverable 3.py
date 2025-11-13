@@ -271,11 +271,11 @@ pd.crosstab(data['State'], data['Category'], normalize='index') * 100
 pd.crosstab(data['Sub_Category'], data['Product_Name'], normalize='index') * 100
 
 
-pd.crosstab(data['Region'], data['Quantity'], normalize='index') * 100
+pd.crosstab(data['Region'], data['Season'], normalize='index') * 100 
 
 
-pd.crosstab([data['Category'], data['Region']], data['Sub_Category'], normalize='index') * 100
-
+table= pd.crosstab([data['Category'], data['Region']], data['Sub_Category'], normalize='index') * 100
+print(table)
 
 
 #----PART 6: Multivariate graphical EDA----
@@ -295,7 +295,7 @@ plt.show()
 # c)  What is the profit distribution per month for 2023 and 2024?
 
 sns.relplot(data = data, x = 'Month', y = ' Profit ', kind = 'line', hue = 'Year', palette = 'bright')
-
+plt.show()
 
 
 # d) Which category has the most profit variation?
@@ -334,7 +334,7 @@ plt.show()
 
 #e) Revenue per category
 
-sns.boxenplot(data=data, x='Category', y=' Revenue ', palette='pastel')
+sns.boxenplot(data=data, x='Season', y=' Revenue ', palette='pastel') 
 plt.show()
 
 
@@ -356,7 +356,7 @@ plt.show()
 
 # i) 
 
-sns.pointplot(data=data, x='Quantity', y=' Unit_Price ', hue='Region', ci=90, linestyles='--',)
+sns.pointplot(data=data, x='Quantity', y=' Unit_Price ', hue='Year', ci=90, linestyles='--',)
 plt.show()
 
 
