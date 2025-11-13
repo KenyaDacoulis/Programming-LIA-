@@ -218,47 +218,29 @@ print('number unique product names:' , unique_product_name)
 
 #----PART 4: Univariate graphical EDA----
 
-# 1: Quantity
-
-sns.displot(data = data, x = 'Quantity', discrete = True)
-
-# 2: Unit Price
-
-sns.displot(data = data, x = ' Unit_Price ', hue = 'Category', element = 'step')
-
-# 3: Revenue
-
-sns.displot(data = data, x = ' Revenue ', kind = 'kde',  bw_adjust = .5)
-
-# 4: Profit
-
-sns.displot(data = data, x = ' Profit ', hue = 'Region')
-
-
-
-
-#Not sure if I have to do all a - g for each column or chose which to use. will ask 
-
 numerical_data = data[['Quantity', ' Unit_Price ', ' Revenue ', ' Profit ']]
 for i in numerical_data:
 # a) Custom and appropriate number of bins
     if i != 'Quantity':
         sns.displot(data, x = i, bins = 10)
-# b) Conditioning on other variables and c) Stacked histogram
+# b) Conditioning on other variables
         sns.displot(data, x = i, hue = 'Region',  palette= 'bright') 
+# c) Stacked histogram        
+        sns.displot(data, x = i, hue = 'Quarter', multiple = 'stack', palette = 'bright')     
 # d) Dodge bars
         sns.displot(data, x = i, hue = 'Year', multiple = 'dodge', bins = 50, palette= 'bright') 
 # e) Normalized histogram statistics
-        sns.displot(data, x = i, stat = 'density', common_norm = False, palette= 'bright') 
+        sns.displot(data, x = i, stat = 'density', common_norm = False) 
 # f) KDE
         sns.displot(data, x = i, kind = 'kde', bw_adjust = 1.5) 
 # g) Empirical cumulative distributions
         sns.displot(data, x = i, hue = 'Category', kind = 'ecdf', palette= 'bright')
     else:
         sns.displot(data, x = i, discrete = True) # a)
-        sns.displot(data, x = i, hue = 'Region', discrete = True, multiple = 'stack', palette= 'bright') # b) and c)
-        sns.displot(data, x = i, hue = 'Year', multiple = 'dodge',discrete = True, palette= 'bright') #d)
-        sns.displot(data, x = i, stat = 'density', common_norm = False, discrete = True, palette= 'bright') #e)
+        sns.displot(data, x = i, hue = 'Region', discrete = True, palette= 'bright') # b) 
+        sns.displot(data, x = i, hue = 'Quarter', multiple = 'stack', discrete = True, palette= 'bright') # c) 
+        sns.displot(data, x = i, hue = 'Year', multiple = 'dodge',discrete = True, palette= 'bright') # d)
+        sns.displot(data, x = i, stat = 'density', common_norm = False, discrete = True) # e)
         sns.displot(data, x = i, kind = 'kde', bw_adjust = 1.5) # f)
         sns.displot(data, x = i, hue = 'Category', kind = 'ecdf', palette= 'bright') # g)
 
@@ -375,7 +357,7 @@ plt.show()
 
 
 #b) Does higher revenue lead to hgher profit?
-sns.displot(data = data.sample(1000), x = ' Revenue ', y = ' Profit ', kind = 'kde', levels = 7) 
+sns.displot(data = data.sample(1000), x = ' Revenue ', y = ' Profit ', kind = 'kde', thresh = 0.05, levels = 7) 
 plt.show()
 
 
