@@ -323,7 +323,6 @@ plt.show()
 # f) what is the profit distribution across categories for 2023 and 2024
 
 
-
 sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Year', kind = 'violin', bw_adjust = 1.5, palette = 'pastel')
 plt.show()
 
@@ -338,7 +337,7 @@ plt.show()
 
 # i) 
 
-sns.pointplot(data=data, x='Quantity', y=' Unit_Price ', hue='Year', ci=90, linestyles='--',)
+sns.pointplot(data=data, x='Quantity', y=' Unit_Price ', hue='Year', ci=90, linestyles='--', palette= 'bright')
 plt.show()
 
 
