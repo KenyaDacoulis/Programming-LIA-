@@ -61,6 +61,10 @@ def get_season(month):
 data['Season'] = data['Order_Date'].dt.month.apply(get_season)
 #the def function was used to categorize the dates into blocks of seasons. The link that shows where the function was found and understood is seen in the lab report.  
 
+# Month
+
+data['Month'] = data['Date'].dt.month
+
 # Quarter
 
 data['Quarter'] = data['Date'].dt.quarter
@@ -288,7 +292,9 @@ sns.relplot(data=data.sample(1000), x=' Revenue ', y=' Profit ', hue='Season', s
 plt.show()
 
 
-# c)  --------
+# c)  What is the profit distribution per month for 2023 and 2024?
+
+sns.relplot(data = data, x = 'Month', y = ' Profit ', kind = 'line', hue = 'Year', palette = 'bright')
 
 
 
@@ -333,6 +339,8 @@ plt.show()
 
 
 # f) what is the profit distribution across categories for 2023 and 2024
+
+
 
 sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Year', kind = 'violin', bw_adjust = 1.5, palette = 'pastel')
 plt.show()
