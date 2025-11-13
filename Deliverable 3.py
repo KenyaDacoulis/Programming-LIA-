@@ -326,7 +326,10 @@ sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Regi
 plt.show()
 
 
-#e) --------
+#e) Revenue per category
+
+sns.boxenplot(data=data, x='Category', y=' Revenue ', palette='pastel')
+plt.show()
 
 
 # f) what is the profit distribution across categories for 2023 and 2024
@@ -337,10 +340,16 @@ plt.show()
 # g) --------
 
 
-# h) --------
+# h) Revenue Category 
+
+sns.barplot(data=data, x='Category', y=' Revenue ', hue='Region', ci=97,)
+plt.show()
 
 
-# i) --------
+# i) 
+
+sns.pointplot(data=data, x='Quantity', y=' Unit_Price ', hue='Region', ci=90, linestyles='--',)
+plt.show()
 
 
 # j) --------
