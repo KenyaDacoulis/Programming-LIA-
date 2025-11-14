@@ -323,7 +323,7 @@ plt.show()
 # f) what is the profit distribution across categories for 2023 and 2024
 
 
-sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Year', kind = 'violin', bw_adjust = 1.5, palette = 'pastel')
+sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Year', kind = 'violin', split = True, inner = 'stick', bw_adjust = 5, palette = 'pastel')
 plt.show()
 
 # g) --------
@@ -355,7 +355,7 @@ plt.show()
 
 
 
-#b) Does higher revenue lead to hgher profit?
+#b) Does higher revenue lead to higher profit?
 sns.displot(data = data.sample(1000), x = ' Revenue ', y = ' Profit ', kind = 'kde', thresh = 0.05, levels = 7) 
 plt.show()
 
