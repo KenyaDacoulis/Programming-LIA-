@@ -326,8 +326,11 @@ plt.show()
 sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Year', kind = 'violin', split = True, inner = 'stick', bw_adjust = 5, palette = 'pastel')
 plt.show()
 
-# g) --------
+# g) Do prices rise drastically during different times of the year?
 
+sns.violinplot(data=data.sample(1000), x='Season', y=' Unit_Price ', inner= None)
+sns.stripplot(data=data.sample(500), x ='Season', y =' Unit_Price ', color= 'pink')
+plt.show()
 
 # h) Revenue Category 
 
@@ -341,9 +344,10 @@ sns.pointplot(data=data, x='Quantity', y=' Unit_Price ', hue='Year', ci=90, line
 plt.show()
 
 
-# j) --------
+# j) Is there a season where people tend to consume more?
 
-
+sns.countplot(data=data, x='Season', hue= "Season", palette= 'pastel')
+plt.show()
 
 
 
