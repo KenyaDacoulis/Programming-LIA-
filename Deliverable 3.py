@@ -250,8 +250,8 @@ for i in numerical_data:
 Cat_state_table= pd.crosstab(data['State'], data['Category'], normalize='index') * 100
 print(Cat_state_table)
 
-Sub_Cat_Product_table= pd.crosstab(data['Sub_Category'], data['Product_Name'], normalize='index') * 100
-print(Sub_Cat_Product_table)
+Sub_Cat_Year_table= pd.crosstab(data['Sub_Category'], data['Year'], normalize='index') * 100
+print(Sub_Cat_Year_table)
 
 Reg_season_table= pd.crosstab(data['Region'], data['Season'], normalize='index') * 100 
 print(Reg_season_table)
@@ -308,9 +308,9 @@ sns.catplot(data = data.sample(1000), x = 'Region', y = ' Revenue ', col = 'Quar
 plt.show()
 # sample of 1000 orders because too much data to make plot thats legible
 
-#d )  does profit vary by category and region across quarters of the year?
+#d )  does profit vary by category across quarters of the year?
 
-sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Region', col = 'Quarter', kind = 'box')
+sns.catplot(data = data.sample(800), x = 'Category', y = ' Profit ', hue = 'Quarter', kind = 'box')
 plt.show()
 
 
