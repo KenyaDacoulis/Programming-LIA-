@@ -354,7 +354,7 @@ plt.show()
 # 6.3. Visualizing bivariate distributions (3 plots): 
 
 #a)What can the relationship between revenue and profit tell us about sales dynamics?
-sns.histplot(data=data.sample(1000), x=' Revenue ', y=' Profit ', bins=25, cmap='coolwarm')
+sns.histplot(data=data.sample(1000), x=' Unit_Price ', y=' Profit ', bins=25, cmap='coolwarm')
 plt.show()
 
 
