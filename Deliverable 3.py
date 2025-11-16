@@ -82,6 +82,10 @@ data['Year'] = data['Date'].dt.year
 
 info_quantity = data['Quantity'].describe()
 print(info_quantity)
+median_quantity = data['Quantity'].median()
+print('median quantity: ', median_quantity)
+mode_quantity = data['Quantity'].mode()
+print('mode quantity: ', mode_quantity)
 varience_quantity = data['Quantity'].var()
 print('varience quantity:', varience_quantity)
 skewness_quantity = data['Quantity'].skew()
@@ -93,6 +97,10 @@ print('kurtosis quantity:', kurtosis_quantity)
 # 2: Unit Price
 info_unit_price = data[" Unit_Price "].describe()
 print(info_unit_price)
+median_unit_price = data[' Unit_Price '].median()
+print('median unit price: ',median_unit_price)
+mode_unit_price = data[' Unit_Price '].mode()
+print('mode unit price: ', mode_unit_price)
 varience_unit_price = data[' Unit_Price '].var()
 print('varience unit price:', varience_quantity)
 skewness_unit_price = data[' Unit_Price '].skew()
@@ -104,6 +112,10 @@ print('kurtosis unit price:', kurtosis_unit_price)
 
 info_revenue = data[' Revenue '].describe()
 print(info_revenue)
+median_revenue = data[' Revenue '].median()
+print('median revenue: ', median_revenue)
+mode_revenue = data[' Revenue '].mode()
+print('mode revenue: ', mode_revenue)
 varience_revenue = data[' Revenue '].var()
 print('varience revenue:', varience_revenue)
 skewness_revenue = data[' Revenue '].skew()
@@ -115,6 +127,10 @@ print('kurtosis revenue:', kurtosis_revenue)
 
 info_profit = data[' Profit '].describe()
 print(info_profit)
+median_profit = data[' Profit '].median()
+print('median profit: ', median_profit)
+mode_profit = data[' Profit '].mode()
+print('mode profiy: ', mode_profit)
 varience_profit = data[' Profit '].var()
 print('varience profit:', varience_profit)
 skewness_profit = data[' Profit '].skew()
@@ -250,8 +266,8 @@ for i in numerical_data:
 Cat_state_table= pd.crosstab(data['State'], data['Category'], normalize='index') * 100
 print(Cat_state_table)
 
-Sub_Cat_Product_table= pd.crosstab(data['Sub_Category'], data['Product_Name'], normalize='index') * 100
-print(Sub_Cat_Product_table)
+Sub_Cat_Year_table= pd.crosstab(data['Sub_Category'], data['Year'], normalize='index') * 100
+print(Sub_Cat_Year_table)
 
 Reg_season_table= pd.crosstab(data['Region'], data['Season'], normalize='index') * 100 
 print(Reg_season_table)
@@ -291,6 +307,7 @@ sns.lmplot(data=data.sample(800), x= ' Unit_Price ', y=' Profit ', hue='Season')
 g=sns.FacetGrid(data=data.sample(800), col='Season', hue= 'Season') # whats going on here
 plt.show()
 
+
 # 6.2.Visualizing categorical data (10 plots):
     
 #a) Quantity per category
@@ -301,27 +318,23 @@ plt.show()
 sns.stripplot(data=data.sample(800), x='Region', y='Quantity', jitter=False,)
 plt.show()
 
-
 # c) Does the revenue vary by region and does it vary by quarter of the year?
 
 sns.catplot(data = data.sample(1000), x = 'Region', y = ' Revenue ', col = 'Quarter', kind = 'swarm')
 plt.show()
 # sample of 1000 orders because too much data to make plot thats legible
 
-#d )  does profit vary by category and region across quarters of the year?
+#d ) Does profit vary by category across quarters of the year?
 
-sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Region', col = 'Quarter', kind = 'box')
+sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Quarter', kind = 'box')
 plt.show()
-
 
 #e) Revenue per category
 
 sns.boxenplot(data=data, x='Season', y=' Revenue ', palette='pastel') 
 plt.show()
 
-
 # f) what is the profit distribution across categories for 2023 and 2024
-
 
 sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Year', kind = 'violin', split = True, inner = 'stick', bw_adjust = 5, palette = 'pastel')
 plt.show()
@@ -337,18 +350,15 @@ plt.show()
 sns.barplot(data=data, x='Category', y=' Revenue ', hue='Region', ci=97,)
 plt.show()
 
-
 # i) 
 
 sns.pointplot(data=data, x='Quantity', y=' Unit_Price ', hue='Year', ci=90, linestyles='--', palette= 'bright')
 plt.show()
 
-
 # j) Is there a season where people tend to consume more?
 
 sns.countplot(data=data, x='Season', hue= "Season", palette= 'pastel')
 plt.show()
-
 
 
 # 6.3. Visualizing bivariate distributions (3 plots): 
@@ -357,19 +367,15 @@ plt.show()
 sns.histplot(data=data.sample(1000), x=' Unit_Price ', y=' Profit ', bins=25, cmap='coolwarm')
 plt.show()
 
-
-
 #b) Does higher revenue lead to higher profit?
 sns.displot(data = data.sample(1000), x = ' Revenue ', y = ' Profit ', kind = 'kde', thresh = 0.05, levels = 7) 
 plt.show()
-
-
 
 #c) Do people tend to by more of products that cost less and is it consistant throughout both years?
 
 sns.displot(data = data.sample(1000), x = ' Unit_Price ', y = 'Quantity', col = 'Year', kind = 'kde') 
 plt.show()
-# yes 
+
 
 
 
