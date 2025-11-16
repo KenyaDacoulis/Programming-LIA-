@@ -309,13 +309,13 @@ plt.show()
 
 
 # 6.2.Visualizing categorical data (10 plots):
-    
-#a) Quantity per category
+
+#a) How are unit prices distributed across product categories?
 sns.stripplot(data=data.sample(800), x='Category', y=' Unit_Price ', jitter=True,)
 plt.show()
 
-#b)  Quantity per region
-sns.stripplot(data=data.sample(800), x='Region', y='Quantity', jitter=False,)
+#b) How Does Profit Vary Across Different Regions?
+sns.stripplot(data=data.sample(800), x='Region', y=' Profit ', jitter=False,)
 plt.show()
 
 # c) Does the revenue vary by region and does it vary by quarter of the year?
@@ -326,10 +326,10 @@ plt.show()
 
 #d ) Does profit vary by category across quarters of the year?
 
-sns.catplot(data = data.sample(800), x = ' Profit ', y = 'Category', hue = 'Quarter', kind = 'box')
+sns.catplot(data = data.sample(800), x = 'Category', y = ' Profit ', hue = 'Quarter', kind = 'box')
 plt.show()
 
-#e) Revenue per category
+#e) Does Revenue Differ Significantly Between Seasons?
 
 sns.boxenplot(data=data, x='Season', y=' Revenue ', palette='pastel') 
 plt.show()
@@ -345,12 +345,12 @@ sns.violinplot(data=data.sample(1000), x='Season', y=' Unit_Price ', inner= None
 sns.stripplot(data=data.sample(500), x ='Season', y =' Unit_Price ', color= 'pink')
 plt.show()
 
-# h) Revenue Category 
+# h) Does Revenue Differ Significantly Between Seasons? 
 
 sns.barplot(data=data, x='Category', y=' Revenue ', hue='Region', ci=97,)
 plt.show()
 
-# i) 
+# i)  How Does Quantity Vary by Unit Price Over Time, Considering 90% Confidence Intervals?
 
 sns.pointplot(data=data, x='Quantity', y=' Unit_Price ', hue='Year', ci=90, linestyles='--', palette= 'bright')
 plt.show()
