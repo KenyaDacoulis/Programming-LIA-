@@ -269,24 +269,24 @@ for i in numerical_data:
 Cat_state_table= pd.crosstab(data['State'], data['Category'], normalize='index') * 100
 print(Cat_state_table)
 
-Sub_Cat_Year_table= pd.crosstab(data['Sub_Category'], data['Year'], normalize='index') * 100
+Sub_Cat_Year_table= pd.crosstab(data['Sub_Category'], data['Year']) * 100
 print(Sub_Cat_Year_table)
 
-Reg_season_table= pd.crosstab(data['Region'], data['Season'], normalize='index') * 100 
+Reg_season_table= pd.crosstab(data['Region'], data['Season']) * 100 
 print(Reg_season_table)
 
-multvariable_table= pd.crosstab([data['Category'], data['Region']], data['Sub_Category'], normalize='index') * 100
+multvariable_table= pd.crosstab([data['Category'], data['Region']], data['Sub_Category']) * 100
 print(multvariable_table)
 
 # b) 
 
-Cat_state_table_normalize= pd.crosstab(data['State'], data['Category']) * 100
+Cat_state_table_normalize= pd.crosstab(data['State'], data['Category'], normalize='index') * 100
 print(Cat_state_table_normalize)
 
-Sub_Cat_Year_table_normalize= pd.crosstab(data['Sub_Category'], data['Year']) * 100
+Sub_Cat_Year_table_normalize= pd.crosstab(data['Sub_Category'], data['Year'], normalize='index') * 100
 print(Sub_Cat_Year_table_normalize)
 
-Reg_season_table_normalize= pd.crosstab(data['Region'], data['Season']) * 100 
+Reg_season_table_normalize= pd.crosstab(data['Region'], data['Season'], normalize='index') * 100 
 print(Reg_season_table_normalize)
 
 # c)
