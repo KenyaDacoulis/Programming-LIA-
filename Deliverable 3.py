@@ -266,17 +266,15 @@ for i in numerical_data:
 
 # a)
 
-Cat_state_table= pd.crosstab(data['State'], data['Category'], normalize='index') * 100
+Cat_state_table= pd.crosstab(data['State'], data['Category']) 
 print(Cat_state_table)
 
-Sub_Cat_Year_table= pd.crosstab(data['Sub_Category'], data['Year']) * 100
+Sub_Cat_Year_table= pd.crosstab(data['Sub_Category'], data['Year']) 
 print(Sub_Cat_Year_table)
 
-Reg_season_table= pd.crosstab(data['Region'], data['Season']) * 100 
+Reg_season_table= pd.crosstab(data['Region'], data['Season'])
 print(Reg_season_table)
 
-multvariable_table= pd.crosstab([data['Category'], data['Region']], data['Sub_Category']) * 100
-print(multvariable_table)
 
 # b) 
 
